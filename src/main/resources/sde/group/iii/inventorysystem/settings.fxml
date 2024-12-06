@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
-<?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sde.group.iii.inventorysystem.Settings"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="sde.group.iii.inventorysystem.controller.SettingsController"
+      spacing="10.0" padding="Insets(10, 10, 10, 10)">
 
-</AnchorPane>
+    <!-- Header Label -->
+    <Label text="Settings" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <!-- Language Selection -->
+    <HBox spacing="10.0">
+        <Label text="Language:" />
+        <ComboBox fx:id="languageComboBox"/>
+    </HBox>
+
+    <!-- Currency Selection -->
+    <HBox spacing="10.0">
+        <Label text="Currency:" />
+        <ComboBox fx:id="currencyComboBox"/>
+    </HBox>
+
+    <!-- Theme Selection -->
+    <HBox spacing="10.0">
+        <Label text="Theme:" />
+        <ComboBox fx:id="themeComboBox"/>
+    </HBox>
+
+    <!-- Save Button -->
+    <Button text="Save Settings" fx:id="saveButton" onAction="#handleSaveSettings" />
+
+</VBox>
