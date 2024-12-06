@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="sde.group.iii.inventorysystem.controller.InventoryController">
+    <TableView fx:id="inventoryTable">
+        <columns>
+            <TableColumn fx:id="itemNameColumn" text="Item Name" />
+            <TableColumn fx:id="itemPriceColumn" text="Price" />
+            <TableColumn fx:id="itemDescriptionColumn" text="Description" />
+        </columns>
+    </TableView>
+    <HBox>
+        <TextField fx:id="nameField" promptText="Item Name" />
+        <TextField fx:id="priceField" promptText="Price" />
+        <TextField fx:id="descriptionField" promptText="Description" />
+        <Button fx:id="addButton" text="Add" onAction="#handleAddItem" />
+        <Button fx:id="removeButton" text="Remove" onAction="#handleRemoveItem" />
+        <Button fx:id="updateButton" text="Update" onAction="#handleUpdateItem" />
+    </HBox>
+</VBox>
