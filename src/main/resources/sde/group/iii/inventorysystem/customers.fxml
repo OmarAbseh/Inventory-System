@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.Scene?>
-<?import javafx.stage.Stage?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="sde.group.iii.inventorysystem.controller.CustomersController" spacing="10" padding="10">
-    <!-- TableView for displaying customers -->
-    <TableView fx:id="customersTable" prefWidth="600" prefHeight="300">
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="sde.group.iii.inventorysystem.controller.CustomersController" spacing="10" style="-fx-padding: 10px;">
+    <TableView fx:id="customerTable" prefWidth="600" prefHeight="300">
         <columns>
-            <TableColumn fx:id="customerNameColumn" text="Name" prefWidth="200" />
-            <TableColumn fx:id="customerPhoneColumn" text="Phone" prefWidth="150" />
-            <TableColumn fx:id="customerEmailColumn" text="Email" prefWidth="250" />
+            <TableColumn fx:id="nameColumn" text="Name" prefWidth="200" />
+            <TableColumn fx:id="phoneColumn" text="Phone" prefWidth="150" />
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="250" />
         </columns>
     </TableView>
 
-    <!-- Form for adding or updating a customer -->
     <HBox spacing="10" alignment="CENTER_LEFT">
         <TextField fx:id="nameField" promptText="Name" prefWidth="150"/>
         <TextField fx:id="phoneField" promptText="Phone" prefWidth="120"/>

@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 import sde.group.iii.inventorysystem.model.Customer;
 import sde.group.iii.inventorysystem.service.CustomerService;
 
@@ -36,6 +38,7 @@ public class CustomersController {
     private Button removeCustomerButton;
 
     private CustomerService customerService = new CustomerService();
+    private ObservableList<Customer> customerList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -43,12 +46,12 @@ public class CustomersController {
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 
+        customerTable.setItems(customerList);
         loadCustomerData();
     }
 
     private void loadCustomerData() {
-        List<Customer> customerList = customerService.getAllCustomers();
-        customerTable.getItems().setAll(customerList);
+        customerList.setAll(customerService.getAllCustomers());
     }
 
     @FXML
@@ -58,14 +61,15 @@ public class CustomersController {
         String email = emailField.getText().trim();
 
         if (name.isEmpty() || phone.isEmpty() || email.isEmpty()) {
-            showAlert("Error", "Please fill in all fields.");
+            showAlert(AlertType.ERROR, "Error", "Please fill in all fields.");
             return;
         }
 
         Customer newCustomer = new Customer(name, phone, email);
         customerService.addCustomer(newCustomer);
         loadCustomerData();
-        showAlert("Success", "Customer added successfully.");
+        clearFields();
+        showAlert(AlertType.INFORMATION, "Success", "Customer added successfully.");
     }
 
     @FXML
@@ -77,7 +81,7 @@ public class CustomersController {
             String email = emailField.getText().trim();
 
             if (name.isEmpty() || phone.isEmpty() || email.isEmpty()) {
-                showAlert("Error", "Please fill in all fields.");
+                showAlert(AlertType.ERROR, "Error", "Please fill in all fields.");
                 return;
             }
 
@@ -86,9 +90,10 @@ public class CustomersController {
             selectedCustomer.setEmail(email);
             customerService.updateCustomer(selectedCustomer);
             loadCustomerData();
-            showAlert("Success", "Customer updated successfully.");
+            clearFields();
+            showAlert(AlertType.INFORMATION, "Success", "Customer updated successfully.");
         } else {
-            showAlert("Error", "Please select a customer to update.");
+            showAlert(AlertType.ERROR, "Error", "Please select a customer to update.");
         }
     }
 
@@ -98,17 +103,24 @@ public class CustomersController {
         if (selectedCustomer != null) {
             customerService.deleteCustomer(selectedCustomer.getId());
             loadCustomerData();
-            showAlert("Success", "Customer removed successfully.");
+            clearFields();
+            showAlert(AlertType.INFORMATION, "Success", "Customer removed successfully.");
         } else {
-            showAlert("Error", "Please select a customer to remove.");
+            showAlert(AlertType.ERROR, "Error", "Please select a customer to remove.");
         }
     }
 
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(AlertType.INFORMATION);
+    private void showAlert(AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    private void clearFields() {
+        nameField.clear();
+        phoneField.clear();
+        emailField.clear();
     }
 }

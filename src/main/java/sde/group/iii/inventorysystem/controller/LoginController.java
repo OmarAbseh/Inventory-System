@@ -2,14 +2,14 @@ package sde.group.iii.inventorysystem.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import sde.group.iii.inventorysystem.utils.DatabaseConnection;
 
 import java.io.IOException;
@@ -19,14 +19,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginController {
+
+    @FXML
+    private VBox loginPane; // Root element of loginpage.fxml
     @FXML
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
     @FXML
     private Button loginButton;
-    @FXML
-    private AnchorPane loginPane;
 
     @FXML
     private void handleLogin() {
@@ -67,24 +68,25 @@ public class LoginController {
         return isValid;
     }
 
-    private void navigateToHomePage() {
+    public void navigateToHomePage() {
+        if (loginPane == null || loginPane.getScene() == null) {
+            System.out.println("loginPane or Scene is null. Please check the FXML linkage.");
+            return;
+        }
+
+        Stage stage = (Stage) loginPane.getScene().getWindow();
         try {
-            // Load the homepage FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sde/group/iii/inventorysystem/homepage.fxml"));
-            AnchorPane homePage = loader.load();
-
-            // Get the current stage (window)
-            Stage stage = (Stage) loginPane.getScene().getWindow();
-            Scene scene = new Scene(homePage);
-
-            // Set the scene and show the new stage
+            // Correct the path here according to your project structure
+            Parent root = FXMLLoader.load(getClass().getResource("/sde/group/iii/inventorysystem/homepage.fxml"));
+            Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert("Error", "Failed to load the homepage.");
+            showAlert("Error", "Failed to load the home page.");
         }
     }
+
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
