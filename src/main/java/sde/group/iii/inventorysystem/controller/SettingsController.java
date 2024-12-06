@@ -14,7 +14,7 @@ public class SettingsController {
     @FXML
     private ComboBox<String> currencyComboBox;
     @FXML
-    private ToggleGroup themeToggleGroup;
+    private ToggleGroup themeToggleGroup = new ToggleGroup(); // Initialize the ToggleGroup
     @FXML
     private RadioButton lightThemeRadio;
     @FXML
@@ -25,6 +25,10 @@ public class SettingsController {
         // Add items to the combo boxes
         languageComboBox.setItems(FXCollections.observableArrayList("English", "Spanish", "French"));
         currencyComboBox.setItems(FXCollections.observableArrayList("USD", "Euro", "HUF"));
+
+        // Set the toggle group for the theme radio buttons
+        lightThemeRadio.setToggleGroup(themeToggleGroup);
+        darkThemeRadio.setToggleGroup(themeToggleGroup);
 
         // Load the current settings and set them in the UI
         Settings.loadSettings(languageComboBox, currencyComboBox, themeToggleGroup);
