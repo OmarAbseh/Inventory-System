@@ -1,0 +1,34 @@
+# Ignore build files and directories
+/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Logs
+*.log
+/logs/
+/*.log
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore sensitive configuration
+*.env
+*.properties
+
+# Ignore Maven or Gradle wrapper files
+/.mvn/
+/.gradle/
+/build/
+
+# Exclude database files (if applicable)
+*.sqlite
+*.db
