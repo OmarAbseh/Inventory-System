@@ -4,11 +4,17 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.BorderPane?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="sde.group.iii.inventorysystem.controller.LoginController"
-      fx:id="loginPane" spacing="10" alignment="CENTER" style="-fx-padding: 20; -fx-background-color: #f4f4f4;">
-    <Label text="Login" style="-fx-font-size: 20; -fx-font-weight: bold;" />
-    <TextField fx:id="usernameField" promptText="Username" />
-    <PasswordField fx:id="passwordField" promptText="Password" />
-    <Button fx:id="loginButton" text="Login" onAction="#handleLogin" />
-</VBox>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="sde.group.iii.inventorysystem.controller.LoginController" stylesheets="@styles.css">
+    <center>
+        <VBox fx:id="loginPane" spacing="15" alignment="CENTER" styleClass="login-container">
+            <Label text="Welcome to Inventory Management System" styleClass="heading"/>
+            <TextField fx:id="usernameField" promptText="Username" styleClass="input-field"/>
+            <PasswordField fx:id="passwordField" promptText="Password" styleClass="input-field"/>
+            <Button fx:id="loginButton" text="Login" onAction="#handleLogin" styleClass="button"/>
+        </VBox>
+    </center>
+</BorderPane>
+
+

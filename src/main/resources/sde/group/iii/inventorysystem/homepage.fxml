@@ -5,21 +5,26 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="sde.group.iii.inventorysystem.controller.HomepageController">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="sde.group.iii.inventorysystem.controller.HomepageController" stylesheets="@styles.css">
     <!-- Sidebar for navigation -->
     <left>
-        <VBox spacing="10">
-            <Button fx:id="inventoryButton" text="Inventory" onAction="#navigateToInventory" />
-            <Button fx:id="customersButton" text="Customers" onAction="#navigateToCustomers" />
-            <Button fx:id="ordersButton" text="Orders" onAction="#navigateToOrders" />
-            <Button fx:id="salesButton" text="Sales" onAction="#navigateToSales" />
-            <Button fx:id="settingsButton" text="Settings" onAction="#navigateToSettings" />
+        <VBox spacing="15" styleClass="sidebar">
+            <Label text="Navigation" styleClass="sidebar-header"/>
+            <Button fx:id="inventoryButton" text="Inventory" styleClass="sidebar-button" onAction="#navigateToInventory"/>
+            <Button fx:id="customersButton" text="Customers" styleClass="sidebar-button" onAction="#navigateToCustomers"/>
+            <Button fx:id="ordersButton" text="Orders" styleClass="sidebar-button" onAction="#navigateToOrders"/>
+            <Button fx:id="salesButton" text="Sales" styleClass="sidebar-button" onAction="#navigateToSales"/>
+            <Button fx:id="settingsButton" text="Settings" styleClass="sidebar-button" onAction="#navigateToSettings"/>
         </VBox>
     </left>
+
     <!-- Main content area -->
     <center>
-        <VBox fx:id="mainContent" spacing="15">
+        <VBox fx:id="mainContent" spacing="15" alignment="CENTER">
+            <Label text="Dashboard" styleClass="heading"/>
             <BarChart fx:id="salesChart" title="Monthly Sales Overview" prefWidth="600" prefHeight="400">
                 <xAxis>
                     <CategoryAxis fx:id="xAxis" label="Month"/>
@@ -28,6 +33,21 @@
                     <NumberAxis fx:id="yAxis" label="Sales Amount"/>
                 </yAxis>
             </BarChart>
+            <HBox spacing="20" alignment="CENTER">
+                <VBox styleClass="dashboard-card">
+                    <Label text="Total Inventory" styleClass="stat-title"/>
+                    <Label fx:id="totalInventory" text="0" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="dashboard-card">
+                    <Label text="Total Customers" styleClass="stat-title"/>
+                    <Label fx:id="totalCustomers" text="0" styleClass="stat-value"/>
+                </VBox>
+                <VBox styleClass="dashboard-card">
+                    <Label text="Total Orders" styleClass="stat-title"/>
+                    <Label fx:id="totalOrders" text="0" styleClass="stat-value"/>
+                </VBox>
+            </HBox>
         </VBox>
     </center>
 </BorderPane>
+
