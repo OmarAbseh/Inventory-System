@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="sde.group.iii.inventorysystem.controller.HomepageController" stylesheets="@styles.css">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="sde.group.iii.inventorysystem.controller.HomepageController" stylesheets="/styles.css">
     <!-- Sidebar for navigation -->
     <left>
         <VBox spacing="15" styleClass="sidebar">

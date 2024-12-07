@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="sde.group.iii.inventorysystem.controller.SalesController"
-      spacing="10.0" padding="10.0">
+      spacing="10.0">
 
-    <!-- Header Label -->
+    <!-- Padding for layout -->
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10" />
+    </padding>
+
+    <!-- Header -->
     <Label text="Sales Page" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
 
-    <!-- TableView to display sales data -->
-    <TableView fx:id="salesTable" prefWidth="600.0" prefHeight="300.0">
+    <!-- Sales Table -->
+    <TableView fx:id="salesTable" prefWidth="700.0" prefHeight="400.0">
         <columns>
             <TableColumn fx:id="saleIdColumn" text="Sale ID" prefWidth="100.0" />
-            <TableColumn fx:id="customerNameColumn" text="Customer Name" prefWidth="150.0" />
+            <TableColumn fx:id="customerIdColumn" text="Customer ID" prefWidth="150.0" />
+            <TableColumn fx:id="itemIdColumn" text="Item ID" prefWidth="150.0" />
             <TableColumn fx:id="saleDateColumn" text="Sale Date" prefWidth="150.0" />
-            <TableColumn fx:id="saleAmountColumn" text="Amount" prefWidth="100.0" />
+            <TableColumn fx:id="saleAmountColumn" text="Amount" prefWidth="150.0" />
         </columns>
     </TableView>
 </VBox>

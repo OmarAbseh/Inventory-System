@@ -1,25 +1,23 @@
 package sde.group.iii.inventorysystem.utils;
 
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.File;
+import java.io.*;
 import java.util.Properties;
 
 public class Settings {
+
     private static final String SETTINGS_FILE = "settings.properties";
 
     /**
      * Loads settings from the properties file and sets them into the provided UI components.
      *
      * @param languageComboBox The ComboBox for selecting the language.
-     * @param currencyComboBox  The ComboBox for selecting the currency.
-     * @param themeToggleGroup  The ToggleGroup for selecting the theme.
+     * @param currencyComboBox The ComboBox for selecting the currency.
+     * @param themeToggleGroup The ToggleGroup for selecting the theme.
      */
     public static void loadSettings(ComboBox<String> languageComboBox, ComboBox<String> currencyComboBox, ToggleGroup themeToggleGroup) {
         Properties properties = new Properties();
@@ -29,27 +27,24 @@ public class Settings {
             System.out.println("Settings file not found. Creating with default settings.");
             // Create the file with default settings if it doesn't exist
             saveSettings("English", "USD", "Light");
-            return; // Skip further loading if a new settings file is created
+            applyDefaults(languageComboBox, currencyComboBox, themeToggleGroup);
+            return; // Skip further loading
         }
 
-        try (FileInputStream fis = new FileInputStream(SETTINGS_FILE)) {
+        try (FileInputStream fis = new FileInputStream(settingsFile)) {
             properties.load(fis);
 
-            // Set the language
+            // Set language
             String language = properties.getProperty("language", "English");
-            if (language != null && !language.isEmpty()) {
-                languageComboBox.setValue(language);
-            }
+            languageComboBox.setValue(language);
 
-            // Set the currency
+            // Set currency
             String currency = properties.getProperty("currency", "USD");
-            if (currency != null && !currency.isEmpty()) {
-                currencyComboBox.setValue(currency);
-            }
+            currencyComboBox.setValue(currency);
 
-            // Set the theme
+            // Set theme
             String theme = properties.getProperty("theme", "Light");
-            if (theme != null && !theme.isEmpty()) {
+            if (themeToggleGroup != null) {
                 for (Toggle toggle : themeToggleGroup.getToggles()) {
                     if (toggle instanceof RadioButton && ((RadioButton) toggle).getText().equalsIgnoreCase(theme)) {
                         themeToggleGroup.selectToggle(toggle);
@@ -96,19 +91,36 @@ public class Settings {
 
         if (!settingsFile.exists()) {
             System.out.println("Settings file not found. Returning default theme 'Light'.");
-            return "Light"; // Return default theme if the file doesn't exist
+            return "Light"; // Default theme
         }
 
-        try (FileInputStream fis = new FileInputStream(SETTINGS_FILE)) {
+        try (FileInputStream fis = new FileInputStream(settingsFile)) {
             properties.load(fis);
-            String theme = properties.getProperty("theme", "Light");
-            if (theme != null && !theme.isEmpty()) {
-                return theme;
-            }
+            return properties.getProperty("theme", "Light");
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Error retrieving current theme: " + e.getMessage());
         }
-        return "Light"; // Return default theme if there is an error
+        return "Light"; // Default theme in case of an error
+    }
+
+    /**
+     * Applies default settings to the UI components.
+     *
+     * @param languageComboBox The ComboBox for selecting the language.
+     * @param currencyComboBox The ComboBox for selecting the currency.
+     * @param themeToggleGroup The ToggleGroup for selecting the theme.
+     */
+    private static void applyDefaults(ComboBox<String> languageComboBox, ComboBox<String> currencyComboBox, ToggleGroup themeToggleGroup) {
+        languageComboBox.setValue("English");
+        currencyComboBox.setValue("USD");
+        if (themeToggleGroup != null) {
+            for (Toggle toggle : themeToggleGroup.getToggles()) {
+                if (toggle instanceof RadioButton && ((RadioButton) toggle).getText().equalsIgnoreCase("Light")) {
+                    themeToggleGroup.selectToggle(toggle);
+                    break;
+                }
+            }
+        }
     }
 }

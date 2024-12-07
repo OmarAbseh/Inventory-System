@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="sde.group.iii.inventorysystem.controller.LoginController" stylesheets="@styles.css">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="sde.group.iii.inventorysystem.controller.LoginController" stylesheets="/styles.css">
     <center>
         <VBox fx:id="loginPane" spacing="15" alignment="CENTER" styleClass="login-container">
             <Label text="Welcome to Inventory Management System" styleClass="heading"/>

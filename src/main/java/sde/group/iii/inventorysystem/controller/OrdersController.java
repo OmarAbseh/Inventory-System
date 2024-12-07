@@ -13,23 +13,25 @@ public class OrdersController {
     @FXML
     private TableView<Orders> orderTable;
     @FXML
-    private TableColumn<Orders, String> orderIdColumn;
+    private TableColumn<Orders, Integer> orderIdColumn;
     @FXML
-    private TableColumn<Orders, String> customerNameColumn;
+    private TableColumn<Orders, Integer> customerNameColumn;
     @FXML
     private TableColumn<Orders, String> statusColumn;
     @FXML
     private TableColumn<Orders, String> shippingAddressColumn;
 
-    private OrdersService orderService = new OrdersService();
+    private final OrdersService orderService = new OrdersService();
 
     @FXML
     public void initialize() {
-        orderIdColumn.setCellValueFactory(new PropertyValueFactory<>("orderId"));
-        customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+        // Link columns to model properties
+        orderIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("trackingNumber"));
         shippingAddressColumn.setCellValueFactory(new PropertyValueFactory<>("shippingAddress"));
 
+        // Load data into the table
         loadOrderData();
     }
 

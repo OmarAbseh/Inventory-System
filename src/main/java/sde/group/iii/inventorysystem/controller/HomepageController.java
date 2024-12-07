@@ -2,30 +2,35 @@ package sde.group.iii.inventorysystem.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.VBox;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class HomepageController {
+
     @FXML
     private Button inventoryButton;
+
     @FXML
     private Button customersButton;
+
     @FXML
     private Button salesButton;
+
     @FXML
     private Button ordersButton;
+
     @FXML
     private Button settingsButton;
 
     @FXML
-    private VBox mainContent; // Container for the main content section of the page
+    private VBox mainContent;
 
     @FXML
     public void initialize() {
-        // Initialization logic (unchanged)
         addButtonHoverEffect(inventoryButton);
         addButtonHoverEffect(customersButton);
         addButtonHoverEffect(salesButton);
@@ -63,12 +68,13 @@ public class HomepageController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             VBox newPage = loader.load();
 
-            // Clear the current main content and add the new page
-            mainContent.getChildren().clear();
-            mainContent.getChildren().add(newPage);
+            if (mainContent != null) {
+                mainContent.getChildren().clear();
+                mainContent.getChildren().add(newPage);
+            }
         } catch (IOException e) {
+            System.err.println("Error loading the FXML file: " + fxmlPath);
             e.printStackTrace();
-            System.out.println("Error loading the FXML file: " + fxmlPath);
         }
     }
 
