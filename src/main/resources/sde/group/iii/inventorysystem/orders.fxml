@@ -14,15 +14,17 @@
     </padding>
 
     <!-- Header Label -->
-    <Label text="Orders Page" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    <Label text="Orders Page" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" />
 
     <!-- TableView to display orders -->
     <TableView fx:id="orderTable" prefWidth="600.0" prefHeight="300.0">
         <columns>
-            <TableColumn fx:id="orderIdColumn" text="Order ID" prefWidth="100.0" />
-            <TableColumn fx:id="customerNameColumn" text="Customer Name" prefWidth="150.0" />
-            <TableColumn fx:id="statusColumn" text="Status" prefWidth="150.0" />
-            <TableColumn fx:id="shippingAddressColumn" text="Shipping Address" prefWidth="200.0" />
+            <TableColumn fx:id="orderIdColumn" text="Order ID" prefWidth="100.0" style="-fx-text-fill: white;" />
+            <TableColumn fx:id="customerNameColumn" text="Customer Name" prefWidth="150.0" style="-fx-text-fill: white;" />
+            <TableColumn fx:id="statusColumn" text="Status" prefWidth="150.0" style="-fx-text-fill: white;" />
+            <TableColumn fx:id="shippingAddressColumn" text="Shipping Address" prefWidth="200.0" style="-fx-text-fill: white;" />
         </columns>
     </TableView>
 </VBox>
+
+

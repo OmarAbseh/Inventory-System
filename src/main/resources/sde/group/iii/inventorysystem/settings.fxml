@@ -14,29 +14,30 @@
     </padding>
 
     <!-- Header -->
-    <Label text="Settings" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    <Label text="Settings" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" />
 
     <!-- Language Selection -->
     <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Language:" />
+        <Label text="Language:" style="-fx-text-fill: white;" />
         <ComboBox fx:id="languageComboBox" />
     </HBox>
 
     <!-- Currency Selection -->
     <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Currency:" />
+        <Label text="Currency:" style="-fx-text-fill: white;" />
         <ComboBox fx:id="currencyComboBox" />
     </HBox>
 
     <!-- Theme Selection -->
     <VBox spacing="5">
-        <Label text="Theme:" />
+        <Label text="Theme:" style="-fx-text-fill: white;" />
         <HBox spacing="10" alignment="CENTER_LEFT">
-            <RadioButton text="Light" fx:id="lightThemeRadio" toggleGroup="$themeToggleGroup" />
-            <RadioButton text="Dark" fx:id="darkThemeRadio" toggleGroup="$themeToggleGroup" />
+            <RadioButton text="Light" fx:id="lightThemeRadio" toggleGroup="$themeToggleGroup" style="-fx-text-fill: white;" />
+            <RadioButton text="Dark" fx:id="darkThemeRadio" toggleGroup="$themeToggleGroup" style="-fx-text-fill: white;" />
         </HBox>
     </VBox>
 
     <!-- Save Button -->
-    <Button text="Save Settings" onAction="#handleSaveSettings" />
+    <Button text="Save Settings" onAction="#handleSaveSettings" style="-fx-text-fill: white;" />
 </VBox>
+

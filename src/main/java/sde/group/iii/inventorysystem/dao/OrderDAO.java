@@ -21,7 +21,7 @@ public class OrderDAO {
 
             while (resultSet.next()) {
                 Orders order = new Orders();
-                order.setId(resultSet.getInt("id"));
+                order.setId(resultSet.getInt("order_id"));
                 order.setItemId(resultSet.getInt("item_id"));
                 order.setCustomerId(resultSet.getInt("customer_id"));
                 order.setTrackingNumber(resultSet.getString("tracking_number"));

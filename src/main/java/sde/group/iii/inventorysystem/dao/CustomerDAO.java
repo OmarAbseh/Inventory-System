@@ -21,9 +21,9 @@ public class CustomerDAO {
 
             while (resultSet.next()) {
                 Customer customer = new Customer();
-                customer.setId(resultSet.getInt("id"));
-                customer.setName(resultSet.getString("name"));
-                customer.setPhone(resultSet.getString("phone"));
+                customer.setId(resultSet.getInt("customer_id"));
+                customer.setName(resultSet.getString("first_name"));
+                customer.setPhone(resultSet.getString("phone_number"));
                 customer.setEmail(resultSet.getString("email"));
                 customers.add(customer);
             }
@@ -43,9 +43,9 @@ public class CustomerDAO {
 
             if (resultSet.next()) {
                 customer = new Customer();
-                customer.setId(resultSet.getInt("id"));
-                customer.setName(resultSet.getString("name"));
-                customer.setPhone(resultSet.getString("phone"));
+                customer.setId(resultSet.getInt("customer_id"));
+                customer.setName(resultSet.getString("first_name"));
+                customer.setPhone(resultSet.getString("phone_number"));
                 customer.setEmail(resultSet.getString("email"));
             }
         } catch (SQLException e) {

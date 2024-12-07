@@ -23,12 +23,11 @@ public class ItemDAO {
 
             while (resultSet.next()) {
                 Inventory item = new Inventory();
-                item.setId(resultSet.getInt("id"));
+                item.setId(resultSet.getInt("item_id"));
                 item.setName(resultSet.getString("name"));
                 item.setPrice(resultSet.getDouble("price"));
                 item.setDescription(resultSet.getString("description"));
-                item.setStockQuantity(resultSet.getInt("stock_quantity"));
-                item.setReadyToShipQuantity(resultSet.getInt("ready_to_ship_quantity"));
+                item.setStockQuantity(resultSet.getInt("quantity"));
                 items.add(item);
             }
         } catch (SQLException e) {
@@ -56,7 +55,6 @@ public class ItemDAO {
                 item.setPrice(resultSet.getDouble("price"));
                 item.setDescription(resultSet.getString("description"));
                 item.setStockQuantity(resultSet.getInt("stock_quantity"));
-                item.setReadyToShipQuantity(resultSet.getInt("ready_to_ship_quantity"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,7 +74,6 @@ public class ItemDAO {
             preparedStatement.setDouble(2, item.getPrice());
             preparedStatement.setString(3, item.getDescription());
             preparedStatement.setInt(4, item.getStockQuantity());
-            preparedStatement.setInt(5, item.getReadyToShipQuantity());
 
             int rowsAffected = preparedStatement.executeUpdate();
             return rowsAffected > 0;
@@ -97,7 +94,6 @@ public class ItemDAO {
             preparedStatement.setDouble(2, item.getPrice());
             preparedStatement.setString(3, item.getDescription());
             preparedStatement.setInt(4, item.getStockQuantity());
-            preparedStatement.setInt(5, item.getReadyToShipQuantity());
             preparedStatement.setInt(6, item.getId());
 
             int rowsAffected = preparedStatement.executeUpdate();
