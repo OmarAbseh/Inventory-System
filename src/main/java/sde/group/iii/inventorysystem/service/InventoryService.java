@@ -1,41 +1,43 @@
 package sde.group.iii.inventorysystem.service;
 
-import sde.group.iii.inventorysystem.dao.ItemDAO;
+import sde.group.iii.inventorysystem.dao.InventoryDAO;
 import sde.group.iii.inventorysystem.model.Inventory;
 
 import java.util.List;
 
 public class InventoryService {
-    private final ItemDAO itemDao;
+    private final InventoryDAO inventoryDAO;
 
     public InventoryService() {
-        this.itemDao = new ItemDAO();
+        this.inventoryDAO = new InventoryDAO();
     }
 
     public List<Inventory> getAllItems() {
-        return itemDao.getAllItems();
+        return inventoryDAO.getAllItems();
     }
 
     public Inventory getItemById(int id) {
-        return itemDao.getItemById(id);
+        return inventoryDAO.getItemById(id);
     }
 
     public void addItem(Inventory item) {
-        itemDao.addItem(item);
+        inventoryDAO.addItem(item);
     }
 
     public void updateItem(Inventory item) {
-        itemDao.updateItem(item);
+        inventoryDAO.updateItem(item);
     }
 
-    // Added removeItem method
     public void removeItem(Inventory item) {
         if (item != null) {
-            itemDao.deleteItem(item.getId()); // Call deleteItem using the item's ID
+            inventoryDAO.removeItem(item);
         }
     }
 
     public void deleteItem(int id) {
-        itemDao.deleteItem(id);
+        Inventory item = new Inventory(); // Create an empty Inventory object
+        item.setId(id); // Set the ID
+        inventoryDAO.removeItem(item);
     }
+
 }

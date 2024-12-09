@@ -13,8 +13,6 @@ import javafx.collections.FXCollections;
 import sde.group.iii.inventorysystem.model.Customer;
 import sde.group.iii.inventorysystem.service.CustomerService;
 
-import java.util.List;
-
 public class CustomersController {
     @FXML
     private TableView<Customer> customerTable;
