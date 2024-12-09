@@ -40,7 +40,6 @@ public class LoginController {
         }
 
         if (validateLogin(username, password)) {
-            showAlert("Success", "Login successful!");
             navigateToHomePage();
         } else {
             showAlert("Error", "Invalid username or password.");
