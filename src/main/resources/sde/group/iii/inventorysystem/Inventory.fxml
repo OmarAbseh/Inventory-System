@@ -5,21 +5,38 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?> <!-- Import Label -->
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="sde.group.iii.inventorysystem.controller.InventoryController">
-    <TableView fx:id="inventoryTable">
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="sde.group.iii.inventorysystem.controller.InventoryController"
+      spacing="10.0"
+      alignment="CENTER"
+      style="-fx-background-color: #2c2f38; -fx-padding: 10;">
+
+    <!-- Header Label -->
+    <Label text="Inventory Page" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" />
+
+    <!-- TableView to display inventory items -->
+    <TableView fx:id="inventoryTable" prefWidth="600.0" prefHeight="300.0">
         <columns>
-            <TableColumn fx:id="itemNameColumn" text="Item Name" />
-            <TableColumn fx:id="itemPriceColumn" text="Price" />
-            <TableColumn fx:id="itemDescriptionColumn" text="Description" />
+            <TableColumn fx:id="itemNameColumn" text="Item Name" prefWidth="200.0" />
+            <TableColumn fx:id="itemPriceColumn" text="Price" prefWidth="100.0" />
+            <TableColumn fx:id="itemDescriptionColumn" text="Description" prefWidth="300.0" />
         </columns>
     </TableView>
-    <HBox>
-        <TextField fx:id="nameField" promptText="Item Name" />
-        <TextField fx:id="priceField" promptText="Price" />
-        <TextField fx:id="descriptionField" promptText="Description" />
+
+    <!-- Input Fields -->
+    <HBox spacing="10.0" alignment="CENTER">
+        <TextField fx:id="nameField" promptText="Item Name" prefWidth="200.0" />
+        <TextField fx:id="priceField" promptText="Price" prefWidth="100.0" />
+        <TextField fx:id="descriptionField" promptText="Description" prefWidth="200.0" />
+    </HBox>
+
+    <!-- CRUD Buttons -->
+    <HBox spacing="10.0" alignment="CENTER">
         <Button fx:id="addButton" text="Add" onAction="#handleAddItem" />
-        <Button fx:id="removeButton" text="Remove" onAction="#handleRemoveItem" />
         <Button fx:id="updateButton" text="Update" onAction="#handleUpdateItem" />
+        <Button fx:id="removeButton" text="Remove" onAction="#handleRemoveItem" />
     </HBox>
 </VBox>

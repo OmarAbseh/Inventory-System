@@ -17,8 +17,8 @@
         <TextField fx:id="nameField" promptText="Name" prefWidth="150"/>
         <TextField fx:id="phoneField" promptText="Phone" prefWidth="120"/>
         <TextField fx:id="emailField" promptText="Email" prefWidth="200"/>
-        <Button fx:id="addCustomerButton" text="Add Customer" onAction="#handleAddCustomer"/>
-        <Button fx:id="updateCustomerButton" text="Update Customer" onAction="#handleUpdateCustomer"/>
-        <Button fx:id="removeCustomerButton" text="Remove Customer" onAction="#handleRemoveCustomer"/>
+        <Button fx:id="addCustomerButton" text="Add" onAction="#handleAddCustomer"/>
+        <Button fx:id="updateCustomerButton" text="Update" onAction="#handleUpdateCustomer"/>
+        <Button fx:id="removeCustomerButton" text="Remove" onAction="#handleRemoveCustomer"/>
     </HBox>
 </VBox>

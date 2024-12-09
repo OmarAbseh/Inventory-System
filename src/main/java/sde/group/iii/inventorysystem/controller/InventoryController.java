@@ -7,10 +7,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import sde.group.iii.inventorysystem.model.Inventory;
 import sde.group.iii.inventorysystem.service.InventoryService;
-
-import java.util.List;
 
 public class InventoryController {
     @FXML
@@ -34,20 +34,23 @@ public class InventoryController {
     @FXML
     private Button updateButton;
 
-    private InventoryService inventoryService = new InventoryService();
+    private final InventoryService inventoryService = new InventoryService();
+    private final ObservableList<Inventory> inventoryList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
+        // Bind table columns to model properties
         itemNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         itemPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         itemDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
+        // Set table data
+        inventoryTable.setItems(inventoryList);
         loadInventoryData();
     }
 
     private void loadInventoryData() {
-        List<Inventory> inventoryList = inventoryService.getAllItems();
-        inventoryTable.getItems().setAll(inventoryList);
+        inventoryList.setAll(inventoryService.getAllItems());
     }
 
     @FXML
@@ -57,7 +60,7 @@ public class InventoryController {
         String description = descriptionField.getText().trim();
 
         if (name.isEmpty() || priceText.isEmpty() || description.isEmpty()) {
-            showAlert("Error", "Please fill in all fields.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please fill in all fields.");
             return;
         }
 
@@ -66,9 +69,10 @@ public class InventoryController {
             Inventory newItem = new Inventory(name, price, description);
             inventoryService.addItem(newItem);
             loadInventoryData();
-            showAlert("Success", "Item added successfully.");
+            clearFields();
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Item added successfully.");
         } catch (NumberFormatException e) {
-            showAlert("Error", "Invalid price format.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Invalid price format. Please enter a valid number.");
         }
     }
 
@@ -78,9 +82,10 @@ public class InventoryController {
         if (selectedItem != null) {
             inventoryService.removeItem(selectedItem);
             loadInventoryData();
-            showAlert("Success", "Item removed successfully.");
+            clearFields();
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Item removed successfully.");
         } else {
-            showAlert("Error", "Please select an item to remove.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select an item to remove.");
         }
     }
 
@@ -93,7 +98,7 @@ public class InventoryController {
             String description = descriptionField.getText().trim();
 
             if (name.isEmpty() || priceText.isEmpty() || description.isEmpty()) {
-                showAlert("Error", "Please fill in all fields.");
+                showAlert(Alert.AlertType.ERROR, "Error", "Please fill in all fields.");
                 return;
             }
 
@@ -104,17 +109,24 @@ public class InventoryController {
                 selectedItem.setDescription(description);
                 inventoryService.updateItem(selectedItem);
                 loadInventoryData();
-                showAlert("Success", "Item updated successfully.");
+                clearFields();
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Item updated successfully.");
             } catch (NumberFormatException e) {
-                showAlert("Error", "Invalid price format.");
+                showAlert(Alert.AlertType.ERROR, "Error", "Invalid price format. Please enter a valid number.");
             }
         } else {
-            showAlert("Error", "Please select an item to update.");
+            showAlert(Alert.AlertType.ERROR, "Error", "Please select an item to update.");
         }
     }
 
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    private void clearFields() {
+        nameField.clear();
+        priceField.clear();
+        descriptionField.clear();
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
