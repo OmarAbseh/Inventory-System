@@ -6,12 +6,9 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="sde.group.iii.inventorysystem.controller.OrdersController"
-      spacing="10.0">
-
-    <!-- Use Insets for padding -->
-    <padding>
-        <Insets top="10" right="10" bottom="10" left="10" />
-    </padding>
+      spacing="10.0"
+      alignment="CENTER"
+      style="-fx-background-color: #2a2a2a; -fx-padding: 10;">
 
     <!-- Header Label -->
     <Label text="Orders Page" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: white;" />
@@ -19,12 +16,32 @@
     <!-- TableView to display orders -->
     <TableView fx:id="orderTable" prefWidth="600.0" prefHeight="300.0">
         <columns>
-            <TableColumn fx:id="orderIdColumn" text="Order ID" prefWidth="100.0" style="-fx-text-fill: white;" />
-            <TableColumn fx:id="customerNameColumn" text="Customer Name" prefWidth="150.0" style="-fx-text-fill: white;" />
-            <TableColumn fx:id="statusColumn" text="Status" prefWidth="150.0" style="-fx-text-fill: white;" />
-            <TableColumn fx:id="shippingAddressColumn" text="Shipping Address" prefWidth="200.0" style="-fx-text-fill: white;" />
+            <TableColumn fx:id="orderIdColumn" text="Order ID" prefWidth="100.0" />
+            <TableColumn fx:id="customerNameColumn" text="Customer Name" prefWidth="150.0" />
+            <TableColumn fx:id="statusColumn" text="Status" prefWidth="150.0" />
+            <TableColumn fx:id="shippingAddressColumn" text="Shipping Address" prefWidth="200.0" />
         </columns>
     </TableView>
+
+    <!-- Input Fields -->
+    <HBox spacing="10.0" alignment="CENTER">
+        <TextField fx:id="itemIdField" promptText="Item ID" prefWidth="100.0" />
+        <TextField fx:id="customerIdField" promptText="Customer ID" prefWidth="100.0" />
+        <TextField fx:id="trackingNumberField" promptText="Tracking Number" prefWidth="150.0" />
+        <TextField fx:id="shippingAddressField" promptText="Shipping Address" prefWidth="200.0" />
+    </HBox>
+    <HBox spacing="10.0" alignment="CENTER">
+        <DatePicker fx:id="orderDateField" promptText="Order Date" />
+        <DatePicker fx:id="shippingDateField" promptText="Shipping Date" />
+    </HBox>
+
+    <!-- CRUD Buttons -->
+    <HBox spacing="10.0" alignment="CENTER">
+        <Button fx:id="addOrderButton" text="Add Order" onAction="#handleAddOrder" />
+        <Button fx:id="updateOrderButton" text="Update Order" onAction="#handleUpdateOrder" />
+        <Button fx:id="removeOrderButton" text="Remove Order" onAction="#handleRemoveOrder" />
+    </HBox>
 </VBox>
+
 
 
