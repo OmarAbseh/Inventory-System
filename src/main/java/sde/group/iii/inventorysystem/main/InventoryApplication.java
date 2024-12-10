@@ -10,6 +10,7 @@ import java.io.IOException;
 public class InventoryApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
+//        https://www.canva.com/design/DAGY2kJQaLo/lruZbx3fB1tEtBMT4CCmfA/edit
         try {
             // Load the initial login page
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sde/group/iii/inventorysystem/login.fxml"));
