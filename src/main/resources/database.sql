@@ -54,11 +54,12 @@ CREATE TABLE IF NOT EXISTS Orders (
                                       order_id INT AUTO_INCREMENT PRIMARY KEY,
                                       customer_id INT,
                                       item_id INT,
-                                      quantity_ordered INT NOT NULL,
+                                      quantity_ordered INT NOT NULL DEFAULT 1,
                                       order_status ENUM('Pending', 'Shipped', 'Delivered', 'Cancelled') DEFAULT 'Pending',
     tracking_number VARCHAR(50),
     shipping_address TEXT,
     order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    shipping_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (customer_id) REFERENCES Customers(id),
     FOREIGN KEY (item_id) REFERENCES Inventory(id)
     );
